@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: ms-products
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3307/products
+    password: 1234
+    hikari:
+      maximum-pool-size: 5
+      connection-timeout: 20000
+server:
+  port: 5006
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+swagger:
+  info:
+    contact:
+      mail: cjonatansoto@gmail.com
+      name: Jonatan Soto Imio
+    description: CRUD de productos
+    name: ${spring.application.name}
+    version: 1.0
