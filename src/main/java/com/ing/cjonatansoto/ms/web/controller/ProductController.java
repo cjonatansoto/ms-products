@@ -3,12 +3,11 @@ package com.ing.cjonatansoto.ms.web.controller;
 import com.ing.cjonatansoto.ms.exception.EnumError;
 import com.ing.cjonatansoto.ms.exception.SimpleException;
 import com.ing.cjonatansoto.ms.services.ProductService;
-import com.ing.cjonatansoto.ms.web.vm.ProductViewModel;
+import com.ing.cjonatansoto.ms.web.responses.ProductResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,7 +30,7 @@ public class ProductController {
     @ApiResponse(responseCode = "204", description = "No existen productos, listado vacio")
     @ApiResponse(responseCode = "500", description = "Error general")
     @GetMapping()
-    public Page<ProductViewModel> fetchPagedProducts(Pageable pageable){
+    public Page<ProductResponse> fetchPagedProducts(Pageable pageable){
         var products = this.productService.fetchPagedProducts(pageable);
         if(!products.hasContent()){
             throw new SimpleException(EnumError.NO_CONTENT, HttpStatus.NO_CONTENT.value());

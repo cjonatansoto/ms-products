@@ -1,10 +1,10 @@
 package com.ing.cjonatansoto.ms.services;
 
-import com.ing.cjonatansoto.ms.web.vm.ProductViewModel;
+import com.ing.cjonatansoto.ms.web.responses.ProductResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface ProductService {
 
-    Page<ProductViewModel> fetchPagedProducts (Pageable pageable);
+    Page<ProductResponse> fetchPagedProducts (Pageable pageable);
 }
