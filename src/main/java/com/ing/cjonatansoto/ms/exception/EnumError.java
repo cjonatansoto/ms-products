@@ -11,7 +11,8 @@ public enum EnumError {
     INVALID_ARGS("E_INVALID_ARGS_002", "Argumentos inválidos: Los parámetros proporcionados no cumplen con los requisitos del servicio."),
     NOT_ALLOWED("E_NOT_ALLOWED_003", "Operación no permitida: La acción solicitada no está permitida según las reglas de negocio."),
     INVALID_BODY("E_INVALID_BODY_004", "Cuerpo de llamada inválido: El formato o la estructura del cuerpo de la solicitud es incorrecto."),
-    NO_CONTENT("E_NO_CONTENT_005", "Sin datos disponibles: No se encontraron registros que coincidan con los criterios solicitados.");
+    NO_CONTENT("E_NO_CONTENT_005", "Sin datos disponibles: No se encontraron registros que coincidan con los criterios solicitados."),
+    NO_SUPPORT("E_METHOD_NOT_SUPPORTED_006", "Método no soportado: La acción solicitada no está disponible en este contexto.");
     private String code;
     private String message;
 }

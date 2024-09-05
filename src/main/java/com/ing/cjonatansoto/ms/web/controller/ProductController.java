@@ -3,10 +3,9 @@ package com.ing.cjonatansoto.ms.web.controller;
 import com.ing.cjonatansoto.ms.exception.EnumError;
 import com.ing.cjonatansoto.ms.exception.SimpleException;
 import com.ing.cjonatansoto.ms.services.ProductService;
+import com.ing.cjonatansoto.ms.web.constants.ApiPaths;
 import com.ing.cjonatansoto.ms.web.requests.ProductRequest;
 import com.ing.cjonatansoto.ms.web.responses.ProductResponse;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -22,13 +21,14 @@ import java.util.List;
  * ProductController
  */
 @RestController
-@RequestMapping(path = "v1/api/products", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = ApiPaths.PATH_PRODUCTS, produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
 public class ProductController {
 
     private final ProductService productService;
 
-    @GetMapping(value = "/with-paged")
+
+    @GetMapping(value = ApiPaths.PATH_WITH_PAGINATION)
     public ResponseEntity<Page<ProductResponse>> findAllWithPaged(Pageable pageable){
         var products = this.productService.findAllWithPaged(pageable);
         if(!products.hasContent()){
@@ -47,7 +47,7 @@ public class ProductController {
         return ResponseEntity.ok(products);
     }
 
-    @GetMapping(value = "/search-by-name/{name}")
+    @GetMapping(value = ApiPaths.PATH_SEARCH_BY_NAME)
     public ResponseEntity<List<ProductResponse>> findAllByNameContaining(@PathVariable String name){
         var products = this.productService.findAllByNameContaining(name);
         if(products.isEmpty()){
@@ -56,7 +56,7 @@ public class ProductController {
         return ResponseEntity.ok(products);
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = ApiPaths.PATH_ID)
     public ResponseEntity<ProductResponse> findByid(@PathVariable Long id){
         var product = this.productService.getById(id);
         return ResponseEntity.ok(product);
@@ -67,12 +67,12 @@ public class ProductController {
         return ResponseEntity.ok(this.productService.save(productRequest));
     }
 
-    @PutMapping(path = "{id}")
-    public ResponseEntity<ProductResponse> update(@Valid @PathVariable Long id, @RequestBody ProductRequest request) {
+    @PutMapping(path = ApiPaths.PATH_ID)
+    public ResponseEntity<ProductResponse> update(@PathVariable Long id, @Valid @RequestBody ProductRequest request) {
         return ResponseEntity.ok(this.productService.update(id, request));
     }
 
-    @DeleteMapping(path = "{id}")
+    @DeleteMapping(path = ApiPaths.PATH_ID)
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         this.productService.delete(id);
         return ResponseEntity.noContent().build();

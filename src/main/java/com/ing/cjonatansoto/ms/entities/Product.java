@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "products")
-//@SQLDelete(sql = "UPDATE products SET deleted_at = NOW() WHERE id = ?")
+@SQLDelete(sql = "UPDATE products SET deleted_at = NOW() WHERE id = ?")
 //@Where(clause = "deleted_at IS NULL")
 public class Product {
     @Id
