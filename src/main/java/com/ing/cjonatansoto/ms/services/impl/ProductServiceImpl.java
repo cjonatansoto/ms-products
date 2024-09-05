@@ -93,12 +93,11 @@ public class ProductServiceImpl implements ProductService {
         this.productRepository.delete(product);
         log.info("Producto con ID: {} eliminado exitosamente.", id);
     }
-
     // Métodos privados
-
     private Product findById(Long id) {
         log.info("Buscando producto con ID: {}", id);
         return this.productRepository.findById(id)
                 .orElseThrow(() -> new SimpleException(EnumError.NO_CONTENT, HttpStatus.NOT_FOUND.value()));
     }
+
 }

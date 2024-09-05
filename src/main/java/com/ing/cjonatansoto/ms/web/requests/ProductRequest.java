@@ -1,6 +1,5 @@
 package com.ing.cjonatansoto.ms.web.requests;
 
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -16,10 +15,9 @@ import java.math.BigDecimal;
 @Data
 @Builder
 public class ProductRequest implements Serializable {
-    @NotEmpty
-    @NotNull
+    @NotEmpty(message = "El nombre no puede estar vacío.")
+    @NotNull(message = "El nombre no puede ser nulo.")
     private String name;
-    @NotNull
-    @Min(1)
+    @NotNull(message = "El precio no puede ser nulo.")
     private BigDecimal price;
 }

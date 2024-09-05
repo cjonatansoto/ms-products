@@ -14,7 +14,7 @@ public class SimpleException extends RuntimeException {
     private final EnumError errorEnum;
 
     public SimpleException(final EnumError enumError) {
-        this(enumError, (Throwable)null);
+        this(enumError, (Throwable) null);
     }
 
     public SimpleException(final EnumError enumError, final Throwable cause) {
@@ -22,7 +22,7 @@ public class SimpleException extends RuntimeException {
     }
 
     public SimpleException(final EnumError enumError, final int httpStatus) {
-        this(enumError, httpStatus, (Throwable)null);
+        this(enumError, httpStatus, (Throwable) null);
     }
 
     public SimpleException(final EnumError enumError, final int httpStatus, final Throwable cause) {

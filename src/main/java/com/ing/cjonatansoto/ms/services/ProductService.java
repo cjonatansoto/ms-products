@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface ProductService {
-
     List<ProductResponse> findAll();
     Page<ProductResponse> findAllWithPaged(Pageable pageable);
     List<ProductResponse> findAllByNameContaining(String name);
