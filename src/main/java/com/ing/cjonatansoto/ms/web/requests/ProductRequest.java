@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 @Data
 @Builder
 public class ProductRequest implements Serializable {
+
     @NotEmpty(message = "El nombre no puede estar vacío.")
     @NotNull(message = "El nombre no puede ser nulo.")
     private String name;
