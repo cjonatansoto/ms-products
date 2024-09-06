@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -30,6 +31,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         log.warn("Validation failed for method argument. Errors: {}", extractErrorMessages(ex.getBindingResult()));
         return this.handleExceptionInternal(ex, extractErrorMessages(ex.getBindingResult()), headers, status, request);
     }
+
+    @Override
+    protected ResponseEntity<Object> handleNoResourceFoundException(NoResourceFoundException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        return this.handleExceptionInternal(ex, new SimpleException(EnumError.NO_RESOURCE_FOUND), headers, status, request);
+    }
+
 
     @Override
     protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
@@ -68,6 +75,14 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return this.handleExceptionInternal(ex, new SimpleException(EnumError.INVALID_ARGS), new HttpHeaders(),
                 HttpStatus.BAD_REQUEST, webRequest);
     }
+
+    /*
+    @ExceptionHandler({NoResourceFoundException.class})
+    public ResponseEntity<Object> handleNoResourceFoundException(final Exception ex, final WebRequest webRequest) {
+        log.warn("Argument type mismatch exception: {}", ex.getMessage());
+        return this.handleExceptionInternal(ex, new SimpleException(EnumError.INVALID_ARGS), new HttpHeaders(),
+                HttpStatus.BAD_REQUEST, webRequest);
+    }*/
 
     private ResponseEntity<Object> doHandleSimpleException(final SimpleException ex, final WebRequest webRequest) {
         log.info("Handling simple exception: {}, status: {}", ex.getMessage(), ex.getStatus());

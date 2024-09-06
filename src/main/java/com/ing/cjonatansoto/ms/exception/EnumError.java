@@ -6,13 +6,14 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum EnumError {
-    DEFAULT("E_GENERIC_500", "Error genérico: Se ha producido un error inesperado en el sistema."),
-    REST_CLIENT("E_SERVICE_001", "Error al consumir servicio REST: No se pudo establecer la conexión con el servidor o el servicio no responde adecuadamente."),
-    INVALID_ARGS("E_INVALID_ARGS_002", "Argumentos inválidos: Los parámetros proporcionados no cumplen con los requisitos del servicio."),
-    NOT_ALLOWED("E_NOT_ALLOWED_003", "Operación no permitida: La acción solicitada no está permitida según las reglas de negocio."),
-    INVALID_BODY("E_INVALID_BODY_004", "Cuerpo de llamada inválido: El formato o la estructura del cuerpo de la solicitud es incorrecto."),
-    NO_CONTENT("E_NO_CONTENT_005", "Sin datos disponibles: No se encontraron registros que coincidan con los criterios solicitados."),
-    NO_SUPPORT("E_METHOD_NOT_SUPPORTED_006", "Método no soportado: La acción solicitada no está disponible en este contexto.");
+    DEFAULT("E_UNKNOWN_ERROR", "Error inesperado: Se ha producido un problema en el sistema. Por favor, inténtelo de nuevo más tarde."),
+    REST_CLIENT("E_SERVICE_CONNECTION_FAILED", "Error en la conexión: No se pudo establecer comunicación con el servidor, o el servicio no respondió a tiempo."),
+    INVALID_ARGS("E_INVALID_PARAMETERS", "Parámetros inválidos: Los argumentos proporcionados no cumplen con las especificaciones requeridas por el servicio."),
+    NOT_ALLOWED("E_OPERATION_NOT_ALLOWED", "Acción no permitida: La operación solicitada no está autorizada según las políticas establecidas."),
+    INVALID_BODY("E_INVALID_REQUEST_BODY", "Cuerpo de solicitud inválido: El formato o la estructura del cuerpo de la solicitud son incorrectos."),
+    NO_CONTENT("E_NO_RECORDS_FOUND", "Sin resultados: No se encontraron registros que coincidan con los criterios especificados."),
+    NO_SUPPORT("E_METHOD_NOT_SUPPORTED", "Método no admitido: La acción solicitada no está disponible en este contexto."),
+    NO_RESOURCE_FOUND("E_RESOURCE_NOT_FOUND", "Recurso no disponible: No se encontró el recurso solicitado en el sistema.");
     private String code;
     private String message;
 }
