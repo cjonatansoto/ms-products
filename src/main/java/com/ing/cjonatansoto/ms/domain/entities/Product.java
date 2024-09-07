@@ -1,24 +1,25 @@
-package com.ing.cjonatansoto.ms.entities;
+package com.ing.cjonatansoto.ms.domain.entities;
 
+import com.ing.cjonatansoto.ms.common.constants.CoreConstants;
 import jakarta.persistence.*;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@SuperBuilder
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
 @Table(name = "products")
 @SQLDelete(sql = "UPDATE products SET deleted_at = NOW() WHERE id = ?")
-//@Where(clause = "deleted_at IS NULL")
+@Where(clause = CoreConstants.CLAUSE_SOFT_DELETED)
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +33,5 @@ public class Product {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
     @Column(name = "deleted_at")
-    @SoftDelete
     private LocalDateTime deletedAt;
 }

@@ -1,4 +1,4 @@
-package com.ing.cjonatansoto.ms.exception;
+package com.ing.cjonatansoto.ms.infrastructure.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;

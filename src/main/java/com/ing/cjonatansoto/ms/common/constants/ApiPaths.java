@@ -1,4 +1,4 @@
-package com.ing.cjonatansoto.ms.web.constants;
+package com.ing.cjonatansoto.ms.common.constants;
 
 public class ApiPaths {
 
